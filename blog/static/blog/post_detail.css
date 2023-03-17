@@ -59,3 +59,37 @@
     margin: 0.5rem;
   }
 
+  .add {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .add a {
+    margin: auto;
+    height: auto;
+    width: 10rem;
+    margin-bottom: 2rem;
+    transform-origin: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    background-color: white;
+  }
+  
+  .add a:hover,
+  .add a:active {
+    transform: scale(1.1);
+    background-color: #390281;
+    color: white;
+  }
+  
+  .add h3 {
+    margin: 0.25rem 0;
+  }
+  
+  .add:hover time,
+  .add:active time {
+    color: white;
+  }
+
