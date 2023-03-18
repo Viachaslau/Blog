@@ -10,8 +10,7 @@
 {% endblock css_files %}
 
 {% block content %}
-<p id="add_post" marging = auto></p>
-    <form action="/" method="POST">
+    <form action="/posts" method="POST">
         {% csrf_token %}
         {% for field in form %}
         <div class="form-control {% if field.errors %}error{% endif %}">
