@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.edit import CreateView
 from django.views.generic.base import TemplateView
+from django.views.generic.edit import FormView
 
 from .models import Post
 from .forms import PostForm
@@ -16,13 +17,6 @@ class PostAdd(CreateView):
     template_name = "blog/add_post.html"
     success_url = "posts/"
 
-class Report(TemplateView):
-    template_name = "blod/posts.html"
-
-    def get_context_data(self, **kwargs):
-        context =  super().get_context_data(**kwargs)
-        # context['message'] = "This works"
-        return context
 
 
 def starting_page(request):
@@ -38,7 +32,26 @@ def posts(request):
 
 def post_detail(request, slug):
     identified_post = get_object_or_404(Post, slug=slug)
+    start = False
+    finish = False
+    try:
+        previous_post = Post.get_next_by_data(identified_post)
+        next_post = Post.get_previous_by_data(identified_post)
+    except:
+        try: 
+            previous_post = identified_post
+            next_post = Post.get_previous_by_data(identified_post)
+            start = True
+        except:
+            previous_post = Post.get_next_by_data(identified_post)
+            next_post = identified_post
+            finish = True
+
     return render(request, "blog/post_detail.html",{
         "post":identified_post,
-        "post_tags": identified_post.tag.all()
+        "post_tags": identified_post.tag.all(),
+        "next_post": next_post.slug,
+        "previous_post": previous_post.slug,
+        "start": start,
+        "finish": finish
     })

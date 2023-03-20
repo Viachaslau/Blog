@@ -75,6 +75,8 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
     border-radius: 12px;
     background-color: white;
+    text-decoration: none;
+    color: black;
   }
   
   .add a:hover,

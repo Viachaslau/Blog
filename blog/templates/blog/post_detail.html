@@ -37,9 +37,22 @@
 <section>
     <form>
         <article class="add">
-            <a href="{% url "posts-page" %}">
-                <h3>Read another</h3>
+            {% if start %}
+            <a href="{% url 'post-detail-page' next_post %}">
+                <h3>Next post</h3>
             </a>
+            {% elif finish %}
+            <a href="{% url 'post-detail-page' previous_post %}">
+                <h3>Previous post</h3>
+            </a>
+            {% else %}
+            <a href="{% url 'post-detail-page' previous_post %}">
+                <h3>Previous post</h3>
+            </a>
+            <a href="{% url 'post-detail-page' next_post %}">
+                <h3>Next post</h3>
+            </a>
+            {% endif %}
             <a>
                 <h3>Add comment</h3>
             </a>
