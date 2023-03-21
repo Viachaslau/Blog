@@ -10,7 +10,7 @@
 {% endblock css_files %}
 
 {% block content %}
-    <form action="/posts" method="POST">
+    <form action={% url 'posts-page' %} method="POST">
         {% csrf_token %}
         {% for field in form %}
         <div class="form-control {% if field.errors %}error{% endif %}">

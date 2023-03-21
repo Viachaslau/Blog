@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from datetime import datetime
 from django.core.validators import MinLengthValidator
+from django.template.defaultfilters import slugify
 
 # Create your models here.
 
@@ -24,7 +25,7 @@ class Tag(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=50)
     excerpt = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='static/images/')
+    image = models.ImageField(upload_to='posts')
     author = models.ForeignKey(
         Author, on_delete=models.SET_NULL, null=True)
     data = models.DateField(default=datetime.now)
@@ -35,6 +36,10 @@ class Post(models.Model):
 
     def __str__(self):
         return f"{self.id}"
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Post, self).save(*args, **kwargs)
     
 
     def get_absolute_url(self):
