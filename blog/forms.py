@@ -1,10 +1,10 @@
 from django import forms
-from .models import Post
+from .models import Enter
 
 
 class PostForm(forms.ModelForm):
    class Meta:
-      model = Post
+      model = Enter
       fields = "__all__"
-      exclude = ['slug']
+ 
       

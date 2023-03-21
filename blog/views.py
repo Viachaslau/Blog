@@ -9,7 +9,7 @@ from django.views import View
 
 
 
-from .models import Post, Author, Tag
+from .models import Post, Enter
 from .forms import PostForm
 
 
@@ -44,15 +44,10 @@ class PostsView(View):
         return render(request, "blog/posts.html", context)
 
 class PostAdd(CreateView):
-    model = Post
-    form_class = PostForm
+    model = Enter
+    fields="__all__"
     template_name = "blog/add_post.html"
-    success_url = "posts/add-post"
-
-    def form_valid(self, form):
-        self.slug = slugify(self.title)
-        form.save()
-        return super(Post, self).form_valid(form)
+    success_url = "/posts"
 
 
 
