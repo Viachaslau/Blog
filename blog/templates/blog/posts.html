@@ -14,11 +14,11 @@ All My Posts
 
     <section id="all-posts">
         <h2>My Collected Posts</h2>
-            <form>
+            {% comment %} <form>
                 <article class="addpost">
                     <a href="{% url 'add-post'%}"><h3>Add new post!</h3></a>
                 </article>  
-            </form>
+            </form> {% endcomment %}
         <ul>
             {% for post in all_posts %}
             {% include "blog/includes/post.html" %}

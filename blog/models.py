@@ -6,13 +6,6 @@ from django.template.defaultfilters import slugify
 
 # Create your models here.
 
-
-class Enter(models.Model):
-    name =  models.CharField(max_length=1000)
-
-    def __str__(self):
-        return f"{self.name}"
-
 class Author(models.Model):
     first_name =  models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
@@ -51,4 +44,10 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse("post-detail-page", args={self.slug})
+
+class Comment(models.Model):
+    user_name =  models.CharField(max_length=120)
+    user_email = models.EmailField()
+    text = models.TextField(max_length=400)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments", default=True)
 

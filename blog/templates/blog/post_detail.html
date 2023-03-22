@@ -34,6 +34,13 @@
     
 </section>
 
+<section id = "comments">
+    <p>
+        {{post.content | linebreaks}}
+    </p>
+    
+</section>
+
 <section>
     <form>
         <article class="add">
@@ -53,7 +60,7 @@
                 <h3>Next post</h3>
             </a>
             {% endif %}
-            <a>
+            <a href="{% url 'add-post'%}">
                 <h3>Add comment</h3>
             </a>
         </article>  

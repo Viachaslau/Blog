@@ -12,7 +12,13 @@
 {% block content %}
     <form enctype="multipart/form-data" method="POST">
         {% csrf_token %}
-        {{ form }}
-        <button type="submit">Send</button>
+        {% for field in form %}
+        <div class="form-control {% if field.errors %}error{% endif %}">
+        {{ field.label_tag }}
+        {{ field }}
+        {{ field.errors }}
+        </div>
+        {% endfor %}
+        <button type="submit">Add comment!</button>
     </form> 
 {% endblock content %}

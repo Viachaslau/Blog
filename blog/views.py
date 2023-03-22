@@ -1,16 +1,16 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.views.generic.edit import CreateView
-from django.views.generic.base import TemplateView
+
 from django.views.generic.edit import FormView
 from django.template.defaultfilters import slugify
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.views import View
 
 
 
-from .models import Post, Enter
-from .forms import PostForm
+from .models import Post, Comment
+from .forms import CommentForm
 
 
 # Create your views here.
@@ -28,27 +28,50 @@ class StartingPageView(ListView):
         data = queryset[:3]
         return data
 
-class PostsView(View):
-    def get(self, request):
-        posts  = Post.objects.all().order_by("-data")
-        context = {
-            "all_posts": posts
-        }
-        return render(request, "blog/posts.html", context)
-    
-    def post(self, request):
-        posts  = Post.objects.all().order_by("-data")
-        context = {
-            "all_posts": posts
-        }
-        return render(request, "blog/posts.html", context)
+class PostsView(ListView):
+    template_name = "blog/posts.html"
+    model = Post
+    ordering = ["-data"]
+    context_object_name = "all_posts"
+
+    def get_queryset(self):
+        return super().get_queryset()
 
 class PostAdd(CreateView):
-    model = Enter
-    fields="__all__"
+    model = Comment
+    form_class = CommentForm
     template_name = "blog/add_post.html"
     success_url = "/posts"
 
+
+# class PostDetailView(DetailView):
+#     template_name = "blog/post_detail.html"
+#     model = Post
+
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         start = False
+#         finish = False
+#         try:
+#             previous_post = Post.get_next_by_data(context)
+#             next_post = Post.get_previous_by_data(context)
+#         except:
+#             try: 
+#                 previous_post = context
+#                 next_post = Post.get_previous_by_data(context)
+#                 start = True
+#             except:
+#                 previous_post = Post.get_next_by_data(context)
+#                 next_post = context
+#                 finish = True
+#         context["post"] = context
+#         "post_tags": context.tag.all(),
+#         "next_post": next_post.slug,
+#         "previous_post": previous_post.slug,
+#         "start": start,
+#         "finish": finish
+#         context[""] = 
+#         return context
 
 
 def post_detail(request, slug):

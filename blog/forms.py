@@ -1,10 +1,11 @@
 from django import forms
-from .models import Enter
+from .models import Comment
 
 
-class PostForm(forms.ModelForm):
+class CommentForm(forms.ModelForm):
    class Meta:
-      model = Enter
+      model = Comment
       fields = "__all__"
+      exclude = ['post']
  
       
