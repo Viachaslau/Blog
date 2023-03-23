@@ -35,39 +35,45 @@
 </section>
 
 <section id = "comments">
+    {% for comment in comments %}
     <p>
-        {{post.content | linebreaks}}
+        {{comment.text}}
     </p>
-    
-</section>
+    {% endfor %}
+</section> 
 
 <section>
-    <form>
-        <article class="add">
-            {% if start %}
-            <a href="{% url 'post-detail-page' next_post %}">
-                <h3>Next post</h3>
-            </a>
-            {% elif finish %}
-            <a href="{% url 'post-detail-page' previous_post %}">
-                <h3>Previous post</h3>
-            </a>
-            {% else %}
-            <a href="{% url 'post-detail-page' previous_post %}">
-                <h3>Previous post</h3>
-            </a>
-            <a href="{% url 'post-detail-page' next_post %}">
-                <h3>Next post</h3>
-            </a>
-            {% endif %}
-            <a href="{% url 'add-post'%}">
-                <h3>Add comment</h3>
-            </a>
-        </article>  
+    <article class="add">
+        {% if start %}
+        <a href="{% url 'post-detail-page' next_post %}">
+            <h3>Next post</h3>
+        </a>
+        {% elif finish %}
+        <a href="{% url 'post-detail-page' previous_post %}">
+            <h3>Previous post</h3>
+        </a>
+        {% else %}
+        <a href="{% url 'post-detail-page' previous_post %}">
+            <h3>Previous post</h3>
+        </a>
+        <a href="{% url 'post-detail-page' next_post %}">
+            <h3>Next post</h3>
+        </a>
+        {% endif %}
+    </article>  
         
-    </form>
-    
-</section>
+    <form enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        {% for field in comment_form %}
+        <div class="form-control {% if field.errors %}error{% endif %}">
+        {{ field.label_tag }}
+        {{ field }}
+        {{ field.errors }}
+        </div>
+        {% endfor %}
+        <button type="submit">Add comment!</button>
+    </form> 
+</section> 
 
     
 {% endblock content %}
