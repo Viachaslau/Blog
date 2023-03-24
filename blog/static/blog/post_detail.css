@@ -160,3 +160,8 @@
   .errors label {
     color: #680000;
   }
+
+
+  #comment {
+    text-align: center
+  }

@@ -37,13 +37,6 @@ class PostsView(ListView):
     def get_queryset(self):
         return super().get_queryset()
 
-class PostAdd(CreateView):
-    model = Comment
-    form_class = CommentForm
-    template_name = "blog/add_post.html"
-    success_url = "/posts"
-
-
 class PostDetailView(View):
     def get(self, request, slug):
         identified_post = get_object_or_404(Post, slug=slug)
@@ -64,7 +57,7 @@ class PostDetailView(View):
         context = {
             "post":identified_post,
             "post_tags": identified_post.tag.all(),
-            "comments" : Comment.objects.all(),
+            "comments" : Comment.objects.filter(post = identified_post),
             "comment_form": CommentForm(),
             "next_post": next_post.slug,
             "previous_post": previous_post.slug,
@@ -102,7 +95,7 @@ class PostDetailView(View):
             "post":identified_post,
             "post_tags": identified_post.tag.all(),
             "comment_form": comment_form,
-            "comments" : Comment.objects.all(),
+            "comments" : Comment.objects.filter(post = identified_post),
             "next_post": next_post.slug,
             "previous_post": previous_post.slug,
             "start": start,

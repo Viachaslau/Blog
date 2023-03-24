@@ -7,5 +7,16 @@ class CommentForm(forms.ModelForm):
       model = Comment
       fields = "__all__"
       exclude = ['post']
+      labels = {
+         "user_name": "Your Name",
+         "user_email": "Your email address",
+         "text": "Leave your comment"
+      }
+      error_messages = {
+         "user_name": {
+            "required": "Your name must not be empty",
+            "max_length": "Please enter a shorter name!"
+         }
+      }
  
       

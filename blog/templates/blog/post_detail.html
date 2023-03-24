@@ -34,13 +34,15 @@
     
 </section>
 
-<section id = "comments">
+{% if comments %}
+<section id = "text">
+    <h1 id = "comment">Comments</h1>
     {% for comment in comments %}
-    <p>
-        {{comment.text}}
-    </p>
+    <h3>{{comment.user_name}}</h3>
+    <section id = "text">{{comment.text}}</section>
     {% endfor %}
 </section> 
+{% endif %}
 
 <section>
     <article class="add">
