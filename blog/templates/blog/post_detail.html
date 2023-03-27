@@ -24,7 +24,14 @@
         {% for tag in post_tags %}
             <span class = "tag"> {{tag.caption}} </span>
         {% endfor %}
-    </section>     
+        <div id = "read-later">
+            <form action="{% url 'read-later' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" value="{{post.id}}" name="post_id">
+                <button>Read later</button>
+            </form>
+        </div>  
+    </section>   
 </section>
 
 <section id = "text">
@@ -64,7 +71,7 @@
         {% endif %}
     </article>  
         
-    <form enctype="multipart/form-data" method="POST">
+    <form id = "add_comment" enctype="multipart/form-data" method="POST">
         {% csrf_token %}
         {% for field in comment_form %}
         <div class="form-control {% if field.errors %}error{% endif %}">

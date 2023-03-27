@@ -1,0 +1,29 @@
+.posts {
+    display: block;
+    background: linear-gradient(to right, #6305dd, #390281);
+    padding: 2rem;
+    border-radius: 12px;
+    width: auto;
+    margin: 2rem;
+    box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.4);
+  }
+  
+  .posts a {
+    text-decoration: none;
+    color: black;
+  }
+  
+  .posts a:hover,
+  .posts a:active {
+    transform: scale(1.1);
+    background-color: #390281;
+    color: white;
+  }
+
+  .posts h1 {
+    text-align: center;
+  }
+
+  .posts ul {
+    display: block;
+  }
