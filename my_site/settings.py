@@ -21,14 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-
+SECRET_KEY = 'django-insecure-=5$zpez5dt8uo)^*v3onkhowhbp#!cn3(mvcto*g8=ny9@)_zq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = getenv("IS_DEVELOPMENT", True)
+DEBUG = True
 
-ALLOWED_HOSTS = [
-    getenv("APP_HOST", "127.0.0.1")
-]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -82,12 +80,8 @@ WSGI_APPLICATION = 'my_site.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER':'djangoblog',
-        'PASSWORD':'blogdjango',
-        'HOST':'django-blog.c2nmhelch7el.eu-north-1.rds.amazonaws.com',
-        'PORT':'5432'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -137,18 +131,9 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = BASE_DIR/"uploads"
 MEDIA_URL = "/files/"
 
-AWS_STORAGE_BUCKET_NAME = "slava-blog"
-AWS_S3_REGION_NAME = "eu-north-1"
 
 
-AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
 
-STATICFOLES_FOLDER = "static"
-MEDIAFILES_FOLDER = "media"
-
-
-STATICFILES_STORAGE = "custom_storages.StaticFileStorage"
-DEFAULT_FILE_STORAGE = "custom_storages.MediaFileStorage"
 
 
 # Default primary key field type
