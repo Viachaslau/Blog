@@ -1,4 +1,51 @@
+@media (min-width: 768px) { 
+  #total div{
+    display:flex; 
+    justify-content: space-between;
+    align-items: center;
+  }
 
+  #total p{
+    text-align: right;
+    color: white;
+    white-space: pre;
+    margin-bottom: 0;
+  }
+
+  .tag{
+    background-color: white;
+    color: #390281;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    margin: 0.5rem;
+  }
+
+}
+
+@media (max-width: 768px) { 
+  #total div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 2rem;
+  }
+
+  #total p {
+    text-align: left;
+    color: white;
+    white-space: pre;
+    margin-bottom: 0;
+  }
+
+  .tag{
+    background-color: white;
+    color: #390281;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    margin: 2rem;
+  }
+}
 
 #total {
     background: linear-gradient(to right, #6305dd, #390281);
@@ -13,7 +60,7 @@
     flex-grow: 1;
     text-align: center;
     color: white;
-    font-size: 60px;
+    font-size: 40px;
 }
 
 #total img{
@@ -28,19 +75,6 @@
     box-shadow: 0 2px 8px rgb(0 0 0 / 25%);
 }
 
-  #total div{
-    display:flex; 
-    justify-content: space-between;
-    align-items: center;
-  }
-
-#total p{
-    text-align: right;
-    color: white;
-    white-space: pre;
-    margin-bottom: 0;
-}
-
   #text {
     background-color: white;
     padding: 2rem;
@@ -48,15 +82,6 @@
     width: auto;
     margin: 2rem 2rem 2rem 2rem;
     box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.4);
-  }
-
-
-  .tag{
-    background-color: white;
-    color: #390281;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    margin: 0.5rem;
   }
 
   .add {

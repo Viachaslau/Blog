@@ -31,6 +31,14 @@
     width: 10rem;
   }
 
+  #latest-posts ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+  }
+
 }
 
 @media (max-width: 575px) { 
@@ -60,6 +68,13 @@
     color: #e4e4e4;
     text-align: center;
 }
+
+#latest-posts ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 1rem;
+}
   
 }
 
@@ -80,14 +95,6 @@
 
 #latest-posts h2 {
   text-align: center;
-}
-
-#latest-posts ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 1rem;
 }
 
 #latest-posts li {
