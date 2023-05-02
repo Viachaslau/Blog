@@ -27,13 +27,12 @@ SECRET_KEY = 'django-insecure-=5$zpez5dt8uo)^*v3onkhowhbp#!cn3(mvcto*g8=ny9@)_zq
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+# 'django-project1-env.eba-zimdj2nu.eu-central-1.elasticbeanstalk.com'
 
 # Application definition
 
 INSTALLED_APPS = [
     'blog',
-    'storages',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -80,10 +79,21 @@ WSGI_APPLICATION = 'my_site.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': '123456789',
+        'HOST': 'database-1.caiatvlvfpkl.eu-central-1.rds.amazonaws.com',
+        'PORT': '5432'
     }
 }
+
+
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
+
 
 
 # Password validation
